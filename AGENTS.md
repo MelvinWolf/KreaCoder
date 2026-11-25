@@ -112,13 +112,6 @@ If the push is rejected because someone else pushed first, pull with rebase agai
 - Use relative paths only (`js/player.js`, not `/js/player.js`), so the game also works on GitHub Pages.
 - **The game must stay playable after every commit.** If `node` is available, run `node --check` on changed JS files before committing. If something breaks, fix it before moving on.
 - Keep it fun. Get something playable early, then iterate in small steps.
-
-## Assets (graphics, sound, music, fonts)
-
-- Put all asset files in `games/<your-game>/assets/`. Use relative paths.
-- Sources: files the team makes themselves (drawings, recordings, AI-generated images), assets drawn in code (canvas shapes, emoji, sounds generated via WebAudio), or free assets the team brings along.
-- Licences: CC0 is free to use. CC-BY needs a credit: add it to the game's credits screen (create one if needed) and to the Credits section of `GAME.md`. Don't use assets with any other licence.
-- Keep files small: resize images to the size actually used, use `.ogg`/`.mp3` for sound.
 - Do not use copyrighted characters, music or images from existing games or films.
 
 ## How users play the game
