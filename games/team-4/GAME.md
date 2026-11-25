@@ -22,3 +22,6 @@ Shared notes for this team and its AI agents. Agents: read this at the start of 
 
 ## Ideas / next steps
 -
+
+## Credits
+- (CC-BY assets used, with author and licence)

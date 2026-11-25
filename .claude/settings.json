@@ -21,7 +21,11 @@
       "Bash(node --check:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(git merge:*)",
+      "Bash(git branch:*)",
+      "Bash(git rev-list:*)",
+      "Bash(code --install-extension:*)"
     ],
     "deny": [
       "Bash(git push --force:*)",

@@ -5,6 +5,7 @@ You are helping participants of a game-making workshop ("vibe coding"). Read thi
 ## The situation
 
 - This repository holds several small browser games, one per team, built during a workshop.
+- The workshop runs over several days in blocks. Between blocks there are **AI shifts**: an unattended cloud agent works through the team's `PLAN.md` while the participants are away (see "AI shifts").
 - Each game lives in its own folder under `games/`. Teams have 1–3 people. Instructors may also join a team.
 - **Several people and several AI agents are working in this repository at the same time**, often on the same game. Other agents may be pushing changes every few minutes. Assume `main` moves constantly.
 - Participants range from experienced programmers to people who have never written code. **Assume your user is non-technical unless they clearly show otherwise.** The goal is fun and a playable game. Teaching Git or programming is not the goal.
@@ -45,9 +46,31 @@ Each game folder has a `GAME.md`. It is how teammates and their agents stay in s
 - Keep it current: game concept, controls, which file does what, who is working on what right now, and short status notes. Keep it brief.
 - If the user tells you what they're working on, note it under "Currently working on" so teammates' agents avoid touching the same files.
 
+## AI shifts (PLAN.md)
+
+Each game folder has a `PLAN.md`. Before an AI shift, the team writes (with their agent's help) what should be done during the shift. `GAME.md` is the long-running state of the game; `PLAN.md` is the task list for one shift and is rewritten for each new shift.
+
+**Helping the team write the plan (interactive session before a shift):**
+- Turn the team's wishes into a short, prioritised list of concrete, testable tasks (e.g. "Add a title screen with a Start button", not "make it better"). Most important first.
+- Note anything the shift agent must not change (e.g. "keep the hand-drawn player sprite").
+- Commit and push `PLAN.md`.
+- Only **one** cloud agent per team per shift. If several team members want to start one, tell them that one is enough.
+
+**If you are the unattended shift agent:**
+- Nobody will answer questions. Make reasonable decisions yourself and write them down.
+- Work through `PLAN.md` from top to bottom. Tick off finished items (`- [x]`). Commit and push after each finished item.
+- Stay inside the game's folder. Keep the game playable after every commit.
+- It's fine to work on the branch your tool requires, or to open a pull request; that will be merged at the start of the next block.
+- At the end, fill in the "Result" section of `PLAN.md` (what was done, what wasn't and why, anything the team should look at first) and update `GAME.md`.
+
+**Start of the next block (interactive session after a shift):**
+- `git fetch --all --prune`, then check for remote branches (e.g. `origin/claude/...`, `origin/codex/...`, `origin/copilot/...`) with commits that touch your game folder and aren't in `main` yet. Merge them into `main` (`git merge origin/<branch>`), resolve conflicts, check the game runs, and push. A pull request on GitHub is closed automatically once its branch is merged into `main`.
+- Never merge a branch that changes other teams' folders.
+- Then summarise for the user in a few sentences what the shift agent did (from the "Result" section) and tell them how to try it.
+
 ## Git workflow (do this yourself, every time)
 
-Work directly on `main`. Do not create branches.
+In interactive sessions, work directly on `main`. Do not create branches (unattended AI shifts are the only exception, see above).
 
 **Before starting any task:**
 ```
@@ -85,16 +108,24 @@ If the push is rejected because someone else pushed first, pull with rebase agai
 ## Technical rules for the games
 
 - Plain HTML, CSS and JavaScript. **No build step, no npm, no bundler, no TypeScript.**
-- Use classic `<script src="...">` tags, not `type="module"`, so `index.html` works when opened directly from disk (double-click) and on GitHub Pages. Scripts share globals. Keep them organised (e.g. one global object per file, or a shared `Game` namespace).
-- External libraries are allowed only via a pinned CDN URL in a `<script>` tag (e.g. Phaser 3 from jsDelivr). Plain canvas is perfectly fine and often simpler.
-- Assets: draw with code (canvas shapes, emoji, generated sounds via WebAudio) or use small files you create. Do not use copyrighted characters, music or images from existing games or films.
+- Libraries (optional; plain canvas is perfectly fine and often simpler): Phaser 4 or Kaplay. Copy the library file from `asset-library/libraries/` into your game folder (e.g. `games/<your-game>/lib/phaser.min.js`) and load it with a relative `<script>` tag. Don't load libraries from the internet at runtime; the workshop wifi may be unreliable. Only if the local copy is missing, use a pinned jsDelivr URL.
 - Use relative paths only (`js/player.js`, not `/js/player.js`), so the game also works on GitHub Pages.
 - **The game must stay playable after every commit.** If `node` is available, run `node --check` on changed JS files before committing. If something breaks, fix it before moving on.
 - Keep it fun. Get something playable early, then iterate in small steps.
 
+## Assets (graphics, sound, music, fonts)
+
+- `asset-library/` in the repository root is a local, **git-ignored** folder. Participants copy the workshop asset pack into it (from a USB stick or the local workshop server). It may be missing or incomplete on a given laptop; then ask the user to copy it there, or work without it.
+- Browse it to find fitting assets. **Copy only the individual files you actually use** into `games/<your-game>/assets/`. Never copy whole packs, and never commit anything inside `asset-library/`.
+- Licences: CC0 is free to use. CC-BY (e.g. the Kevin MacLeod music) needs a credit: add it to the game's credits screen (create one if needed) and to `GAME.md`. Don't use assets with any other licence.
+- Files the team makes themselves (drawings, recordings, AI-generated images) go into `games/<your-game>/assets/` too. Keep them small: resize images to the size actually used, use `.ogg`/`.mp3` for sound.
+- Without assets: draw with code (canvas shapes, emoji, generated sounds via WebAudio).
+- Do not use copyrighted characters, music or images from existing games or films.
+
 ## How users play the game
 
-- Locally: open `games/<your-game>/index.html` in a browser (double-click it, or right-click → open with browser). Reload the tab after changes.
+- Locally, with the VS Code extension **Live Server** (`ritwickdey.LiveServer`): right-click `games/<your-game>/index.html` → "Open with Live Server". The browser reloads automatically after changes. Opening the file directly (double-click) does **not** work reliably, because browsers block loading images and sounds from disk.
+- If Live Server isn't installed: VS Code usually offers it as a recommended extension when the repo is opened. Otherwise install it for the user (`code --install-extension ritwickdey.LiveServer`) or guide them in plain words (Extensions icon on the left → search "Live Server" → Install).
 - Online: the repository's GitHub Pages site shows a gallery of all games (root `index.html`). It updates a minute or two after pushing.
 
 ## When you are stuck
