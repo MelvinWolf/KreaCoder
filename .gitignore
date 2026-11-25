@@ -3,5 +3,3 @@ Thumbs.db
 node_modules/
 .env
 .claude/settings.local.json
-asset-library/*
-!asset-library/README.md

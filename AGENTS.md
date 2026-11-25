@@ -108,18 +108,17 @@ If the push is rejected because someone else pushed first, pull with rebase agai
 ## Technical rules for the games
 
 - Plain HTML, CSS and JavaScript. **No build step, no npm, no bundler, no TypeScript.**
-- Libraries (optional; plain canvas is perfectly fine and often simpler): Phaser 4 or Kaplay. Copy the library file from `asset-library/libraries/` into your game folder (e.g. `games/<your-game>/lib/phaser.min.js`) and load it with a relative `<script>` tag. Don't load libraries from the internet at runtime; the workshop wifi may be unreliable. Only if the local copy is missing, use a pinned jsDelivr URL.
+- Libraries (optional; plain canvas is perfectly fine and often simpler): Phaser 4 or Kaplay. Download one pinned version once into your game folder (e.g. `games/<your-game>/lib/phaser.min.js`) and load it with a relative `<script>` tag, instead of loading it from the internet every time the game starts. The workshop wifi may be unreliable.
 - Use relative paths only (`js/player.js`, not `/js/player.js`), so the game also works on GitHub Pages.
 - **The game must stay playable after every commit.** If `node` is available, run `node --check` on changed JS files before committing. If something breaks, fix it before moving on.
 - Keep it fun. Get something playable early, then iterate in small steps.
 
 ## Assets (graphics, sound, music, fonts)
 
-- `asset-library/` in the repository root is a local, **git-ignored** folder. Participants copy the workshop asset pack into it (from a USB stick or the local workshop server). It may be missing or incomplete on a given laptop; then ask the user to copy it there, or work without it.
-- Browse it to find fitting assets. **Copy only the individual files you actually use** into `games/<your-game>/assets/`. Never copy whole packs, and never commit anything inside `asset-library/`.
-- Licences: CC0 is free to use. CC-BY (e.g. the Kevin MacLeod music) needs a credit: add it to the game's credits screen (create one if needed) and to `GAME.md`. Don't use assets with any other licence.
-- Files the team makes themselves (drawings, recordings, AI-generated images) go into `games/<your-game>/assets/` too. Keep them small: resize images to the size actually used, use `.ogg`/`.mp3` for sound.
-- Without assets: draw with code (canvas shapes, emoji, generated sounds via WebAudio).
+- Put all asset files in `games/<your-game>/assets/`. Use relative paths.
+- Sources: files the team makes themselves (drawings, recordings, AI-generated images), assets drawn in code (canvas shapes, emoji, sounds generated via WebAudio), or free assets the team brings along.
+- Licences: CC0 is free to use. CC-BY needs a credit: add it to the game's credits screen (create one if needed) and to the Credits section of `GAME.md`. Don't use assets with any other licence.
+- Keep files small: resize images to the size actually used, use `.ogg`/`.mp3` for sound.
 - Do not use copyrighted characters, music or images from existing games or films.
 
 ## How users play the game

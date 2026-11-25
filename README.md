@@ -5,10 +5,9 @@ Willkommen bei KreaCoder! Jedes Team baut sein eigenes Browserspiel, und eine KI
 ## So startet ihr
 
 1. Öffnet diesen Ordner in VS Code. Wenn VS Code fragt, ob es die empfohlenen Erweiterungen installieren soll: **Ja** (das ist „Live Server“, damit läuft euer Spiel im Browser).
-2. Kopiert das Asset-Paket (Grafiken, Sounds, Musik) vom USB-Stick bzw. vom Workshop-Server in den Ordner `asset-library/` in diesem Repo.
-3. Startet euren KI-Agenten (Claude Code, Copilot, Codex, ...) und sagt ihm, welches Team ihr seid und wie viele ihr seid, z. B. *„Wir sind Team 2, zu zweit, und wollen ein Spiel machen, in dem ...“*
-4. Erzählt ihm von eurem Spiel, in jeder beliebigen Sprache. Um alles Technische kümmert er sich selbst, auch ums Speichern und darum, dass euer Team eure Änderungen bekommt.
-5. Zum Spielen: Rechtsklick auf `games/<euer-spiel>/index.html` → **„Open with Live Server“**. Der Browser lädt nach jeder Änderung automatisch neu.
+2. Startet euren KI-Agenten (Claude Code, Copilot, Codex, ...) und sagt ihm, welches Team ihr seid und wie viele ihr seid, z. B. *„Wir sind Team 2, zu zweit, und wollen ein Spiel machen, in dem ...“*
+3. Erzählt ihm von eurem Spiel, in jeder beliebigen Sprache. Um alles Technische kümmert er sich selbst, auch ums Speichern und darum, dass euer Team eure Änderungen bekommt.
+4. Zum Spielen: Rechtsklick auf `games/<euer-spiel>/index.html` → **„Open with Live Server“**. Der Browser lädt nach jeder Änderung automatisch neu.
 
 Alle Spiele online: siehe den GitHub-Pages-Link im „About“-Bereich des Repositorys.
 
