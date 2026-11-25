@@ -3,6 +3,7 @@
 Shared notes for this team and its AI agents. Agents: read this at the start of every session and keep it short and current.
 
 ## Team
+- Size: (number of people)
 - (names)
 
 ## Concept

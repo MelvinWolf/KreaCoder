@@ -1,11 +1,11 @@
 # Instructions for AI coding agents
 
-You are helping participants of a short game-making workshop ("vibe coding"). Read this whole file before doing anything else.
+You are helping participants of a game-making workshop ("vibe coding"). Read this whole file before doing anything else.
 
 ## The situation
 
-- This repository holds several small browser games, one per team, built during a single workshop.
-- Each game lives in its own folder under `games/`. Teams have 1–3 people.
+- This repository holds several small browser games, one per team, built during a workshop.
+- Each game lives in its own folder under `games/`. Teams have 1–3 people. Instructors may also join a team.
 - **Several people and several AI agents are working in this repository at the same time**, often on the same game. Other agents may be pushing changes every few minutes. Assume `main` moves constantly.
 - Participants range from experienced programmers to people who have never written code. **Assume your user is non-technical unless they clearly show otherwise.** The goal is fun and a playable game. Teaching Git or programming is not the goal.
 
@@ -22,11 +22,21 @@ You are helping participants of a short game-making workshop ("vibe coding"). Re
 
 - Work **only inside your team's folder** `games/<your-game>/`. Do not modify other teams' folders.
 - Files outside `games/` (this file, `index.html`, `games.js`, etc.) are shared. Leave them alone, except for adding or updating your own game's entry in `games.js`.
-- **First session for a team:** if you don't know which folder belongs to your user, ask them which team number they were given (team-1, team-2, …) or which game they're working on. Then:
+- **First session for a team:** if you don't know which folder belongs to your user, ask them in one friendly message which team number they were given (team-1, team-2, …) or which game they're working on, **and how many people are in their team**. Then:
   1. `git pull --rebase` first. A teammate's agent may already have renamed the folder.
   2. If the folder is still called `team-N`, ask the user for a short game name. Rename the folder with `git mv games/team-N games/<short-name>`, using lowercase letters, digits and dashes only (e.g. `space-cats`). Update the game's entry in `games.js` (folder and title), commit and push immediately.
   3. If a teammate already renamed it, just use the new folder.
-- Instructors may create additional games: copy `games/_template/` to a new folder and add an entry to `games.js`.
+  4. Record the team size (and names, if given) in `GAME.md`. If `GAME.md` already has it, don't ask again.
+
+## Team size changes how careful you need to be
+
+- **Solo team (1 person):** nobody else edits this game, so skip the coordination overhead. No need to track "Currently working on" in `GAME.md` or to split files aggressively; organise code however works best. Still commit and push regularly (the repository is shared and the work should be saved and visible online).
+- **2–3 people:** several agents edit the same game at the same time. Follow everything in "Shared notes" and "Avoiding conflicts with teammates" strictly.
+- If the user mentions that someone joined or left (e.g. an instructor joins), update the team size in `GAME.md` and adjust.
+
+## Additional games
+
+Instructors may create additional games: copy `games/_template/` to a new folder and add an entry to `games.js`.
 
 ## Shared notes: GAME.md
 
@@ -80,7 +90,7 @@ If the push is rejected because someone else pushed first, pull with rebase agai
 - Assets: draw with code (canvas shapes, emoji, generated sounds via WebAudio) or use small files you create. Do not use copyrighted characters, music or images from existing games or films.
 - Use relative paths only (`js/player.js`, not `/js/player.js`), so the game also works on GitHub Pages.
 - **The game must stay playable after every commit.** If `node` is available, run `node --check` on changed JS files before committing. If something breaks, fix it before moving on.
-- Keep it fun and small. An afternoon is short: get something playable within the first ~20 minutes, then iterate.
+- Keep it fun. Get something playable early, then iterate in small steps.
 
 ## How users play the game
 
